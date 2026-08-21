@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stock Data Analysis Tool — Shanmuga Lakshmi V</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+:root{
+  --ink: #1B2A4A; --ink-soft: #2E3F63; --chalk: #F7F5EF; --chalk-dim: #EDE9DE;
+  --brass: #B8935F; --brass-deep: #8F6B3E; --sage: #7A8B76;
+  --rule: rgba(27,42,74,0.14); --paper-line: rgba(27,42,74,0.08);
+  --display: 'Fraunces', serif; --body: 'Inter', sans-serif; --mono: 'JetBrains Mono', monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--chalk); color:var(--ink); font-family:var(--body); line-height:1.6; -webkit-font-smoothing:antialiased;}
+.wrap{max-width:900px;margin:0 auto;padding:0 32px;}
+nav{position:sticky; top:0; z-index:100; background:rgba(247,245,239,0.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--rule);}
+.nav-wrap{max-width:1180px;margin:0 auto;padding:0 32px; display:flex; align-items:center; justify-content:space-between; height:72px;}
+.brand{font-family:var(--display); font-weight:600; font-size:1.15rem; letter-spacing:-0.01em; color:var(--ink); display:flex; align-items:center; gap:10px; text-decoration:none;}
+.brand-mark{width:10px;height:10px;background:var(--brass); transform:rotate(45deg); flex-shrink:0;}
+.nav-links{display:flex; gap:36px; list-style:none;}
+.nav-links a{color:var(--ink-soft); text-decoration:none; font-size:0.88rem; font-weight:500;}
+.nav-links a:hover{color:var(--brass-deep);}
+@media (max-width:860px){.nav-links{display:none;}}
+
+.proj-hero{padding:72px 0 48px; border-bottom:1px solid var(--rule);}
+.back-link{font-family:var(--mono); font-size:0.8rem; color:var(--ink-soft); text-decoration:none; display:inline-block; margin-bottom:28px;}
+.back-link:hover{color:var(--brass-deep);}
+.proj-tag{font-family:var(--mono); font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--brass-deep); font-weight:500; margin-bottom:18px;}
+h1{font-family:var(--display); font-weight:500; font-size:clamp(2rem, 4vw, 2.8rem); line-height:1.12; letter-spacing:-0.02em; color:var(--ink); margin-bottom:16px;}
+.proj-sub{font-size:1.05rem; color:var(--ink-soft); max-width:640px;}
+
+section{padding:56px 0;}
+.section-label{font-family:var(--mono); font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--brass-deep); font-weight:500; margin-bottom:18px; display:block;}
+.proj-body p{font-size:1rem; color:var(--ink-soft); max-width:720px; margin-bottom:16px;}
+.proj-list{list-style:none; font-size:0.96rem; color:var(--ink-soft); max-width:720px;}
+.proj-list li{padding:7px 0; padding-left:18px; position:relative;}
+.proj-list li::before{content:'—'; position:absolute; left:0; color:var(--brass);}
+.chip-row{display:flex; flex-wrap:wrap; gap:8px;}
+.chip{font-size:0.8rem; padding:6px 13px; border:1px solid var(--rule); color:var(--ink-soft); font-family:var(--mono); background:var(--chalk-dim);}
+.divider{height:1px; background:var(--rule); margin:0;}
+
+.proj-nav{display:flex; justify-content:space-between; padding:40px 0 80px; border-top:1px solid var(--rule); margin-top:20px;}
+.proj-nav a{font-family:var(--mono); font-size:0.82rem; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--brass);}
+
+footer{border-top:1px solid var(--rule); padding:32px 0; text-align:center; font-size:0.8rem; color:var(--ink-soft); font-family:var(--mono);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-wrap">
+    <a href="../index.html" class="brand"><span class="brand-mark"></span>AI&nbsp;Enablement&nbsp;Studio</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Program</a></li>
+      <li><a href="../about.html">About Me</a></li>
+      <li><a href="../about.html#projects">Projects</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="proj-hero">
+  <div class="wrap">
+    <a href="../about.html#projects" class="back-link">← Back to Projects</a>
+    <div class="proj-tag">Freelance · Sep 2024 – Till Date</div>
+    <h1>Stock Data Analysis Tool</h1>
+    <p class="proj-sub">Helping investors gauge market sentiment without manually reading financial news.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap proj-body">
+    <span class="section-label">Overview</span>
+    <p>Reading financial news to gauge market mood is slow and inconsistent. This tool automates that read: a transformer pipeline processes financial text, summarizes it, and scores sentiment — surfacing the signal through a simple analysis dashboard instead of a wall of articles.</p><p>Alongside sentiment scoring, the dashboard gives users a visual read on how a particular stock is performing, along with a future trend prediction, so the sentiment signal sits next to the price action it's meant to explain.</p>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<section>
+  <div class="wrap">
+    <span class="section-label">Highlights</span>
+    <ul class="proj-list">
+      <li>Transformer pipeline (DistilBERT, BART, RoBERTa, GPT-2) for summarization and sentiment scoring</li>
+      <li>Simple analysis dashboard surfacing sentiment at a glance</li>
+      <li>Visual representation of stock performance</li>
+      <li>Future trend prediction alongside sentiment signal</li>
+    </ul>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider"></div></div>
+
+<section>
+  <div class="wrap">
+    <span class="section-label">Tech &amp; Tools</span>
+    <div class="chip-row">
+      <span class="chip">Python</span>
+      <span class="chip">DistilBERT</span>
+      <span class="chip">BART</span>
+      <span class="chip">RoBERTa</span>
+      <span class="chip">GPT-2</span>
+      <span class="chip">NLP</span>
+      <span class="chip">Dashboard / Analytics</span>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="proj-nav">
+    <a href="sentiment-analysis.html">← Sentiment Analysis</a>
+    <a href="mental-health-calendar.html">Mental Health Calendar App →</a>
+  </div>
+</div>
+
+<footer>
+  Shanmuga Lakshmi V — Project Detail
+</footer>
+
+</body>
+</html>
