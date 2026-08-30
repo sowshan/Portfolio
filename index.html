@@ -66,13 +66,26 @@ nav .wrap{
   border-bottom:1px solid transparent;
 }
 .nav-links a:hover{color:var(--brass-deep); border-color:var(--brass-deep);}
-.nav-cta{
-  background:var(--ink); color:var(--chalk); padding:10px 20px;
-  font-size:0.85rem; font-weight:600; text-decoration:none;
-  border:1px solid var(--ink); transition:all 0.2s;
+.nav-toggle{
+  display:none; background:none; border:1px solid var(--rule);
+  font-size:1.1rem; color:var(--ink); cursor:pointer; padding:8px 12px;
+  line-height:1;
 }
-.nav-cta:hover{background:transparent; color:var(--ink);}
-@media (max-width:860px){.nav-links{display:none;}}
+@media (max-width:860px){
+  .nav-toggle{display:block;}
+  .nav-links{
+    display:none; flex-direction:column; gap:0;
+    position:absolute; top:100%; left:0; right:0;
+    background:var(--chalk); border-bottom:1px solid var(--rule);
+    padding:8px 32px;
+  }
+  .nav-links.open{display:flex;}
+  .nav-links li{border-top:1px solid var(--paper-line); width:100%;}
+  .nav-links li:first-child{border-top:none;}
+  .nav-links a{display:block; padding:14px 0;}
+}
+nav{position:sticky; top:0; z-index:100;}
+nav .wrap{position:relative;}
 
 /* ---------- HERO ---------- */
 .hero{
@@ -98,20 +111,7 @@ h1 em{font-style:italic; font-weight:400; color:var(--brass-deep);}
   font-size:1.08rem; color:var(--ink-soft); max-width:520px; margin-bottom:36px;
   font-weight:400;
 }
-.hero-actions{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:48px;}
-.btn-primary{
-  background:var(--ink); color:var(--chalk); padding:15px 28px;
-  text-decoration:none; font-weight:600; font-size:0.92rem;
-  border:1px solid var(--ink); transition:all 0.2s;
-}
-.btn-primary:hover{background:var(--brass-deep); border-color:var(--brass-deep);}
-.btn-ghost{
-  padding:15px 28px; text-decoration:none; font-weight:600; font-size:0.92rem;
-  color:var(--ink); border:1px solid var(--rule); transition:all 0.2s;
-}
-.btn-ghost:hover{border-color:var(--ink);}
-
-.hero-stats{display:flex; gap:40px; flex-wrap:wrap;}
+.hero-stats{display:flex; gap:40px; flex-wrap:wrap; margin-top:8px;}
 .stat{border-left:2px solid var(--brass); padding-left:14px;}
 .stat-num{font-family:var(--display); font-size:1.7rem; font-weight:600; color:var(--ink); line-height:1;}
 .stat-label{font-size:0.78rem; color:var(--ink-soft); margin-top:4px; text-transform:uppercase; letter-spacing:0.04em;}
@@ -317,7 +317,6 @@ h2{
 .contact{text-align:center; padding:110px 0;}
 .contact h2{font-size:clamp(2rem,4vw,2.9rem); max-width:680px; margin:0 auto 20px;}
 .contact .lede{margin:0 auto 40px; max-width:520px;}
-.contact-actions{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
 .contact-detail{
   margin-top:56px; padding-top:32px; border-top:1px solid var(--rule);
   display:flex; justify-content:center; gap:56px; flex-wrap:wrap;
@@ -335,16 +334,14 @@ footer{
 
 <nav>
   <div class="wrap">
-    <div class="brand"><span class="brand-mark"></span>AI&nbsp;Enablement&nbsp;Studio</div>
-    <ul class="nav-links">
+    <a href="index.html" class="brand" style="text-decoration:none;"><span class="brand-mark"></span>AI&nbsp;Enablement&nbsp;Studio</a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+    <ul class="nav-links" id="navLinks">
       <li><a href="about.html">About Me</a></li>
       <li><a href="#program">Program</a></li>
-      <li><a href="#responsibilities">Responsibilities</a></li>
-      <li><a href="#roadmap">Roadmap</a></li>
-      <li><a href="#benefits">Benefits</a></li>
+      <li><a href="about.html#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#contact" class="nav-cta">Bring this to campus</a>
   </div>
 </nav>
 
@@ -354,10 +351,6 @@ footer{
       <span class="eyebrow">Technical Industry Specialist — Campus Program</span>
       <h1>Turning classrooms into <em>AI-literate</em> research studios.</h1>
       <p class="hero-sub">A structured, on-campus engagement that brings working industry AI practice — prompt engineering, research tooling, and applied innovation — to students and faculty across every academic stream, two hours a week.</p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary">Start a conversation</a>
-        <a href="#activities" class="btn-ghost">See the weekly plan</a>
-      </div>
       <div class="hero-stats">
         <div class="stat"><div class="stat-num">2 hrs</div><div class="stat-label">On campus, weekly</div></div>
         <div class="stat"><div class="stat-num">4</div><div class="stat-label">Academic streams covered</div></div>
@@ -792,7 +785,7 @@ footer{
     </div>
     <div class="exp-grid">
       <div class="exp-card">
-        <div class="exp-org">Mercedes-Benz</div>
+        <div class="exp-org">Capgemini</div>
         <div class="exp-role">Quality Engineering &amp; AI Testing</div>
         <p class="exp-desc">Worked on enterprise-scale solutions supporting quality engineering, automation, testing strategy, and AI-enabled processes.</p>
         <div class="exp-tags">
@@ -872,10 +865,6 @@ footer{
     <span class="section-tag" style="justify-content:center; display:flex;">Let's Build an AI-Ready Campus</span>
     <h2>Ready to bring AI enablement to your students and faculty?</h2>
     <p class="lede">A short conversation is all it takes to scope the first residency term.</p>
-    <div class="contact-actions">
-      <a href="mailto:hello@example.com" class="btn-primary">Email to schedule a call</a>
-      <a href="#activities" class="btn-ghost">Review the weekly plan again</a>
-    </div>
     <div class="contact-detail">
       <span>Email — <a href="mailto:hello@example.com">hello@example.com</a></span>
       <span>Engagement — 2 hrs / week, hybrid</span>

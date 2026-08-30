@@ -17,13 +17,29 @@ html{scroll-behavior:smooth;}
 body{background:var(--chalk); color:var(--ink); font-family:var(--body); line-height:1.6; -webkit-font-smoothing:antialiased;}
 .wrap{max-width:900px;margin:0 auto;padding:0 32px;}
 nav{position:sticky; top:0; z-index:100; background:rgba(247,245,239,0.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--rule);}
-.nav-wrap{max-width:1180px;margin:0 auto;padding:0 32px; display:flex; align-items:center; justify-content:space-between; height:72px;}
+.nav-wrap{max-width:1180px;margin:0 auto;padding:0 32px; display:flex; align-items:center; justify-content:space-between; height:72px; position:relative;}
 .brand{font-family:var(--display); font-weight:600; font-size:1.15rem; letter-spacing:-0.01em; color:var(--ink); display:flex; align-items:center; gap:10px; text-decoration:none;}
 .brand-mark{width:10px;height:10px;background:var(--brass); transform:rotate(45deg); flex-shrink:0;}
 .nav-links{display:flex; gap:36px; list-style:none;}
 .nav-links a{color:var(--ink-soft); text-decoration:none; font-size:0.88rem; font-weight:500;}
 .nav-links a:hover{color:var(--brass-deep);}
-@media (max-width:860px){.nav-links{display:none;}}
+.nav-toggle{
+  display:none; background:none; border:1px solid var(--rule);
+  font-size:1.1rem; color:var(--ink); cursor:pointer; padding:8px 12px; line-height:1;
+}
+@media (max-width:860px){
+  .nav-toggle{display:block;}
+  .nav-links{
+    display:none; flex-direction:column; gap:0;
+    position:absolute; top:100%; left:0; right:0;
+    background:var(--chalk); border-bottom:1px solid var(--rule);
+    padding:8px 32px;
+  }
+  .nav-links.open{display:flex;}
+  .nav-links li{border-top:1px solid var(--paper-line); width:100%;}
+  .nav-links li:first-child{border-top:none;}
+  .nav-links a{display:block; padding:14px 0;}
+}
 
 .proj-hero{padding:72px 0 48px; border-bottom:1px solid var(--rule);}
 .back-link{font-family:var(--mono); font-size:0.8rem; color:var(--ink-soft); text-decoration:none; display:inline-block; margin-bottom:28px;}
@@ -53,9 +69,10 @@ footer{border-top:1px solid var(--rule); padding:32px 0; text-align:center; font
 <nav>
   <div class="nav-wrap">
     <a href="../index.html" class="brand"><span class="brand-mark"></span>AI&nbsp;Enablement&nbsp;Studio</a>
-    <ul class="nav-links">
-      <li><a href="../index.html">Program</a></li>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+    <ul class="nav-links" id="navLinks">
       <li><a href="../about.html">About Me</a></li>
+      <li><a href="../index.html#program">Program</a></li>
       <li><a href="../about.html#projects">Projects</a></li>
       <li><a href="../index.html#contact">Contact</a></li>
     </ul>
